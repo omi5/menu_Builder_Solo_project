@@ -5,6 +5,9 @@ import { Request , Response } from "express";
 
 
 const port: number = 3000
+import { createCategory } from './controllers/category.controller.js';
+import { menuItemModel } from './models/menuItem.model.js';
+import { createMenuItem } from "./controllers/menuItem.controller.js";
 const app = express()
 
 app.use(cors())
@@ -23,9 +26,28 @@ const connectDB = ()=>{
     }
 }
 
+
+//Routes in Here
+
+//For menu Items
 app.get('/', (req: Request, res: Response)=>{
     res.send('Hello from backend finally!')
 })
+
+app.post('/item/post', createMenuItem)
+
+
+//For category Items
+
+app.post('/category/post',createCategory)
+
+app.get('/category',(req: Request, res: Response)=>{
+    res.send('I am from backEnd category!')
+})
+
+
+
+
 
 app.listen(port, ()=>{
     console.log('Server Running ...');
