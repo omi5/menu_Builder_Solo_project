@@ -27,6 +27,17 @@ const ingredients = new mongoose.Schema({
 		costPerUnit: Number,
 		caloriePerUnit: Number
 })
+const addOption = new mongoose.Schema({
+    ingredientName: String,
+    quantity: Number,
+    ingredients: [ingredients]
+})
+
+const noOption = new mongoose.Schema({
+    ingredientName: String,
+    quantity: Number,
+    ingredient: [ingredients]
+})
 
 
 const itemSchema = new mongoose.Schema({
@@ -45,26 +56,17 @@ const itemSchema = new mongoose.Schema({
 	servingTemperature: Number,
 	itemDietaryRestrictions: [ItemDietaryRestrictions],
     itemPackingDimention: packing,
-    ingredients: [ingredients]
+    ingredients: [ingredients],
+    options: [{ add : [addOption] , no: [noOption]}]
+
 })
 
-const addOption = new mongoose.Schema({
-    ingredientName: String,
-    quantity: Number,
-    ingredients: [ingredients]
-})
 
-const noOption = new mongoose.Schema({
-    ingredientName: String,
-    quantity: Number,
-    ingredient: [ingredients]
-})
 
 const menuItemSchema = new mongoose.Schema({
     restaurantId : Number,
     categories: [CategoriesTypeSchema],
     items: [itemSchema],
-    options: [{ add : [addOption] , no: [noOption]}]
         
 })
 
