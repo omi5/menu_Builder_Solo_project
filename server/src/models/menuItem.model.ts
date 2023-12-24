@@ -5,9 +5,9 @@ const  CategoriesTypeSchema = new mongoose.Schema({
     name: String
 })
 
-const timeOfDay = new mongoose.Schema({
-    categoryName: String
-})
+// const timeOfDay = new mongoose.Schema({
+//     categoryName: String
+// })
 
 const ItemDietaryRestrictions = new mongoose.Schema({
     allergens: String
@@ -48,7 +48,7 @@ const itemSchema = new mongoose.Schema({
 	itemPrice: Number,
 	itemCalories: Number,
 	categoryId: Number,
-	timeOfDay: [timeOfDay],
+	timeOfDay: [String, String, String],
 	itemPortionsize: Number,
 	itemPreparationtime: Number,
 	itemLastingTime: Number,
@@ -57,7 +57,7 @@ const itemSchema = new mongoose.Schema({
 	itemDietaryRestrictions: [ItemDietaryRestrictions],
     itemPackingDimention: packing,
     ingredients: [ingredients],
-    options: [{ add : [addOption] , no: [noOption]}]
+    options: { add : [addOption] , no: [noOption]}
 
 })
 

@@ -1,6 +1,6 @@
 //Schema
 import mongoose from "mongoose";
-const categorySchema = new mongoose.Schema({
+const timeOfMenuSchema = new mongoose.Schema({
     categoryName: {
         type: String,
         required: true
@@ -25,12 +25,12 @@ const categorySchema = new mongoose.Schema({
         required: true
     },
     startTime: {
-        type: Date,
+        type: String,
         required: true,
     },
     endTime: {
-        type: Date,
+        type: String,
         required: true,
     }
 });
-export const categoryModel = mongoose.model('categoryName', categorySchema);
+export const timeOfMenuModel = mongoose.model('timeOfCategry', timeOfMenuSchema);

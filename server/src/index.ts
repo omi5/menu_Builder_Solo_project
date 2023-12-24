@@ -5,7 +5,7 @@ import { Request , Response } from "express";
 
 
 const port: number = 3000
-import { createCategory } from './controllers/category.controller.js';
+import { createTimeOfMenu, getAllTimeOfMenu, getAllTimeOfMenuById } from './controllers/timeOfMenu.controller.js';
 import { menuItemModel } from './models/menuItem.model.js';
 import { createMenuItem } from "./controllers/menuItem.controller.js";
 const app = express()
@@ -39,11 +39,10 @@ app.post('/item/post', createMenuItem)
 
 //For category Items
 
-app.post('/category/post',createCategory)
+app.post('/category/post', createTimeOfMenu)
 
-app.get('/category',(req: Request, res: Response)=>{
-    res.send('I am from backEnd category!')
-})
+app.get('/category', getAllTimeOfMenu)
+app.get('/category/:id', getAllTimeOfMenuById)
 
 
 

@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 const port = 3000;
-import { createCategory } from './controllers/category.controller.js';
+import { createTimeOfMenu, getAllTimeOfMenu, getAllTimeOfMenuById } from './controllers/timeOfMenu.controller.js';
 import { createMenuItem } from "./controllers/menuItem.controller.js";
 const app = express();
 app.use(cors());
@@ -24,10 +24,9 @@ app.get('/', (req, res) => {
 });
 app.post('/item/post', createMenuItem);
 //For category Items
-app.post('/category/post', createCategory);
-app.get('/category', (req, res) => {
-    res.send('I am from backEnd category!');
-});
+app.post('/category/post', createTimeOfMenu);
+app.get('/category', getAllTimeOfMenu);
+app.get('/category/:id', getAllTimeOfMenuById);
 app.listen(port, () => {
     console.log('Server Running ...');
     connectDB();

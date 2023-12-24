@@ -3,9 +3,9 @@ const CategoriesTypeSchema = new mongoose.Schema({
     id: Number,
     name: String
 });
-const timeOfDay = new mongoose.Schema({
-    categoryName: String
-});
+// const timeOfDay = new mongoose.Schema({
+//     categoryName: String
+// })
 const ItemDietaryRestrictions = new mongoose.Schema({
     allergens: String
 });
@@ -23,24 +23,6 @@ const ingredients = new mongoose.Schema({
     costPerUnit: Number,
     caloriePerUnit: Number
 });
-const itemSchema = new mongoose.Schema({
-    itemId: Number,
-    itemName: String,
-    itemImage: String,
-    itemDescription: String,
-    itemPrice: Number,
-    itemCalories: Number,
-    categoryId: Number,
-    timeOfDay: [timeOfDay],
-    itemPortionsize: Number,
-    itemPreparationtime: Number,
-    itemLastingTime: Number,
-    itemPackingType: String,
-    servingTemperature: Number,
-    itemDietaryRestrictions: [ItemDietaryRestrictions],
-    itemPackingDimention: packing,
-    ingredients: [ingredients]
-});
 const addOption = new mongoose.Schema({
     ingredientName: String,
     quantity: Number,
@@ -51,11 +33,29 @@ const noOption = new mongoose.Schema({
     quantity: Number,
     ingredient: [ingredients]
 });
+const itemSchema = new mongoose.Schema({
+    itemId: Number,
+    itemName: String,
+    itemImage: String,
+    itemDescription: String,
+    itemPrice: Number,
+    itemCalories: Number,
+    categoryId: Number,
+    timeOfDay: [String, String, String],
+    itemPortionsize: Number,
+    itemPreparationtime: Number,
+    itemLastingTime: Number,
+    itemPackingType: String,
+    servingTemperature: Number,
+    itemDietaryRestrictions: [ItemDietaryRestrictions],
+    itemPackingDimention: packing,
+    ingredients: [ingredients],
+    options: { add: [addOption], no: [noOption] }
+});
 const menuItemSchema = new mongoose.Schema({
     restaurantId: Number,
     categories: [CategoriesTypeSchema],
     items: [itemSchema],
-    options: [{ add: [addOption], no: [noOption] }]
 });
 export const menuItemModel = mongoose.model('menuItems', menuItemSchema);
 // import mongoose, { Document, Schema, Model } from 'mongoose';
